@@ -773,7 +773,7 @@
 
         <!-- ===== Card 1: Chakras con Péndulo Hebreo ===== -->
         <article class="distancia-card" id="cardChakras">
-          <span class="distancia-card__badge">Terapia Online</span>
+          <span class="distancia-card__badge">Vía online</span>
           <h3 class="distancia-card__titulo">Armonización de Chakras <span>con Péndulo Hebreo</span></h3>
           <p class="distancia-card__texto">
             A través de una foto o videollamada, el péndulo hebreo permite detectar en qué chakra hay un
@@ -808,11 +808,23 @@
             <span class="chakra-info__nombre" id="chakraNombre">Tocá un chakra</span>
             <span class="chakra-info__detalle" id="chakraDetalle">para descubrir su frecuencia y su palabra asociada.</span>
           </div>
+
+          <a
+            class="distancia-whatsapp"
+            id="whatsappChakras"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-mensaje="Hola Silvana, quiero reservar una sesión de Armonización de Chakras con Péndulo Hebreo (terapia online)."
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.08.94 3.97 2.48 5.4L4.5 21l4.9-1.53A10.1 10.1 0 0 0 12 19c4.97 0 9-3.58 9-8s-4.03-8-9-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            Agendar esta terapia
+          </a>
         </article>
 
         <!-- ===== Card 2: Limpieza energética ===== -->
         <article class="distancia-card" id="cardLimpieza">
-          <span class="distancia-card__badge">Terapia Online</span>
+          <span class="distancia-card__badge">Vía online</span>
           <h3 class="distancia-card__titulo">Limpieza Energética <span>con Péndulo Hebreo</span></h3>
           <p class="distancia-card__texto">
             El péndulo hebreo también permite limpiar y despejar cargas energéticas, tanto en personas
@@ -840,11 +852,24 @@
               armonía, la buena circulación de energía y el bienestar de quienes habitan el espacio.
             </p>
           </div>
+
+          <a
+            class="distancia-whatsapp"
+            id="whatsappLimpieza"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-mensaje-personas="Hola Silvana, quiero reservar una sesión de Limpieza Energética de Personas con Péndulo Hebreo (terapia online)."
+            data-mensaje-espacios="Hola Silvana, quiero reservar una sesión de Limpieza Energética de Hogares y Consultorios con Péndulo Hebreo (terapia online)."
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.08.94 3.97 2.48 5.4L4.5 21l4.9-1.53A10.1 10.1 0 0 0 12 19c4.97 0 9-3.58 9-8s-4.03-8-9-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            Agendar esta terapia
+          </a>
         </article>
 
         <!-- ===== Card 3: Regresión a la niñez ===== -->
         <article class="distancia-card" id="cardNinez">
-          <span class="distancia-card__badge">Terapia Online</span>
+          <span class="distancia-card__badge">Vía online</span>
           <h3 class="distancia-card__titulo">Regresión a la Niñez <span>Sanación del Niño Interior</span></h3>
           <p class="distancia-card__texto">
             Un espacio de encuentro con tu niño interior, para revisitar con ternura y contención
@@ -855,15 +880,26 @@
             <span class="nino-reveal__icono" aria-hidden="true"></span>
             <span class="nino-reveal__texto" id="ninoTexto">Tocá suavemente para recibir un mensaje de tu niño interior</span>
           </button>
+
+          <a
+            class="distancia-whatsapp"
+            id="whatsappNinez"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            data-mensaje="Hola Silvana, quiero reservar una sesión de Regresión a la Niñez - Sanación del Niño Interior (terapia online)."
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3C7.03 3 3 6.58 3 11c0 2.08.94 3.97 2.48 5.4L4.5 21l4.9-1.53A10.1 10.1 0 0 0 12 19c4.97 0 9-3.58 9-8s-4.03-8-9-8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            Agendar esta terapia
+          </a>
         </article>
 
       </div>
 
-      <div class="distancia-cta">
-        <a href="#contacto" class="btn-primario">
-          Agendar terapia virtual
-          <span class="ornamento ornamento--sm" aria-hidden="true"></span>
-        </a>
+      <div class="distancia-dots" role="tablist" aria-label="Seleccionar terapia para ver en el carrusel">
+        <button type="button" class="distancia-dot activo" data-target="cardChakras" aria-selected="true" aria-label="Ver: Armonización de Chakras"></button>
+        <button type="button" class="distancia-dot" data-target="cardLimpieza" aria-selected="false" aria-label="Ver: Limpieza Energética"></button>
+        <button type="button" class="distancia-dot" data-target="cardNinez" aria-selected="false" aria-label="Ver: Regresión a la Niñez"></button>
       </div>
     </div>
   </section>
@@ -1762,6 +1798,39 @@
   <!-- ================= JS: TERAPIAS A DISTANCIA ================= -->
   <script>
     // ---------------------------------------------------------
+    // WHATSAPP — arma los links de "Agendar esta terapia" con el
+    // mensaje correspondiente a cada tarjeta (número fijo, sin libs).
+    // ---------------------------------------------------------
+    (function () {
+      const NUMERO_WHATSAPP = '54935364675543';
+
+      function construirLinkWhatsapp(mensaje) {
+        return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
+      }
+
+      // Chakras y Regresión a la Niñez: mensaje fijo por tarjeta.
+      document.querySelectorAll('.distancia-whatsapp[data-mensaje]').forEach((link) => {
+        link.href = construirLinkWhatsapp(link.dataset.mensaje);
+      });
+
+      // Limpieza Energética: el mensaje depende de la pestaña activa.
+      const linkLimpieza = document.getElementById('whatsappLimpieza');
+      if (linkLimpieza) {
+        function actualizarLinkLimpieza(destino) {
+          const mensaje = destino === 'espacios'
+            ? linkLimpieza.dataset.mensajeEspacios
+            : linkLimpieza.dataset.mensajePersonas;
+          linkLimpieza.href = construirLinkWhatsapp(mensaje);
+        }
+
+        actualizarLinkLimpieza('personas');
+        document.addEventListener('distancia:limpieza-cambio', (evento) => {
+          actualizarLinkLimpieza(evento.detail.destino);
+        });
+      }
+    })();
+
+    // ---------------------------------------------------------
     // CARD 1 — Selector de chakras (frecuencia + palabra asociada)
     // ---------------------------------------------------------
     (function () {
@@ -1823,6 +1892,8 @@
         paneles.forEach((panel) => {
           panel.hidden = panel.dataset.panel !== destino;
         });
+
+        document.dispatchEvent(new CustomEvent('distancia:limpieza-cambio', { detail: { destino } }));
       }
 
       tabs.forEach((tab) => {
@@ -1869,6 +1940,49 @@
         boton.setAttribute('aria-expanded', 'true');
         textoEl.textContent = mensajes[indice];
       });
+    })();
+
+    // ---------------------------------------------------------
+    // CARRUSEL MOBILE — puntos de navegación entre las 3 tarjetas.
+    // En desktop el grid no scrollea y los puntos quedan ocultos
+    // por CSS; acá solo se activa la lógica, sin romper nada arriba.
+    // ---------------------------------------------------------
+    (function () {
+      const grid = document.querySelector('.distancia-grid');
+      const dots = Array.from(document.querySelectorAll('.distancia-dot'));
+      if (!grid || !dots.length) return;
+
+      const tarjetas = dots.map((dot) => document.getElementById(dot.dataset.target)).filter(Boolean);
+
+      function marcarActivo(id) {
+        dots.forEach((dot) => {
+          const activo = dot.dataset.target === id;
+          dot.classList.toggle('activo', activo);
+          dot.setAttribute('aria-selected', String(activo));
+        });
+      }
+
+      dots.forEach((dot) => {
+        dot.addEventListener('click', () => {
+          const tarjeta = document.getElementById(dot.dataset.target);
+          if (!tarjeta) return;
+          tarjeta.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+          marcarActivo(dot.dataset.target);
+        });
+      });
+
+      // Detecta qué tarjeta queda más centrada al deslizar y actualiza el punto activo.
+      const observador = new IntersectionObserver(
+        (entradas) => {
+          const visible = entradas
+            .filter((entrada) => entrada.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+          if (visible) marcarActivo(visible.target.id);
+        },
+        { root: grid, threshold: [0.5, 0.75, 1] }
+      );
+
+      tarjetas.forEach((tarjeta) => observador.observe(tarjeta));
     })();
   </script>
 </body>
