@@ -742,6 +742,282 @@ section.pad {
   color: #7a8398;
 }
 
+/* =========================================================
+   TERAPIAS A DISTANCIA — "Armonización sin Fronteras"
+   Reutiliza las variables globales (--navy, --ink, --paper, --paper-soft,
+   --line, --halo-cyan). Sin librerías externas.
+   ========================================================= */
+.distancia {
+  background: var(--paper-soft);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.distancia .head {
+  text-align: center;
+  max-width: 62ch;
+  margin: 0 auto 3rem;
+}
+
+.distancia-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.6rem;
+  align-items: stretch;
+}
+
+.distancia-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 2rem 1.8rem 1.8rem;
+  box-shadow: 0 24px 60px -34px rgba(11, 60, 110, 0.35);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.distancia-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 70px -30px rgba(11, 60, 110, 0.4);
+}
+
+.distancia-card__badge {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--navy);
+  background: rgba(111, 227, 240, 0.18);
+  border: 1px solid rgba(111, 227, 240, 0.5);
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  margin-bottom: 1.1rem;
+}
+
+.distancia-card__badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--halo-cyan);
+  flex: none;
+}
+
+.distancia-card__titulo {
+  font-size: 1.25rem;
+  line-height: 1.3;
+  color: var(--ink);
+  margin-bottom: 0.9rem;
+}
+
+.distancia-card__titulo span {
+  display: block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--navy-soft);
+  margin-top: 0.25rem;
+}
+
+.distancia-card__texto {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #445064;
+  margin-bottom: 1.4rem;
+}
+
+.distancia-card > * + *:last-child { margin-top: auto; }
+
+.distancia-sr {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ----- Card 1: selector de chakras ----- */
+.chakra-selector {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.4rem 0;
+  margin-bottom: 1.1rem;
+}
+
+.chakra-punto {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 2px solid var(--chakra-color, var(--navy));
+  background: var(--paper-soft);
+  background: color-mix(in srgb, var(--chakra-color, var(--navy)) 22%, var(--paper));
+  cursor: pointer;
+  padding: 0;
+  flex: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.chakra-punto:hover {
+  transform: translateY(-2px) scale(1.08);
+}
+
+.chakra-punto:focus-visible {
+  outline: 2px solid var(--halo-cyan);
+  outline-offset: 2px;
+}
+
+.chakra-punto[aria-pressed="true"] {
+  background: var(--chakra-color, var(--navy));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--chakra-color, var(--navy)) 30%, transparent), 0 6px 14px -6px rgba(11,60,110,0.5);
+}
+
+.chakra-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 0.9rem 1rem;
+  min-height: 4.4rem;
+  justify-content: center;
+}
+
+.chakra-info__nombre {
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.chakra-info__detalle {
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: #5a6478;
+}
+
+/* ----- Card 2: tabs de limpieza ----- */
+.limpieza-tabs {
+  display: flex;
+  gap: 0.4rem;
+  background: var(--paper-soft);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.3rem;
+  margin-bottom: 1.1rem;
+}
+
+.limpieza-tab {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: #5a6478;
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  padding: 0.55rem 0.6rem;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.limpieza-tab.activo {
+  background: var(--navy);
+  color: #fff;
+}
+
+.limpieza-tab:focus-visible {
+  outline: 2px solid var(--halo-cyan);
+  outline-offset: 2px;
+}
+
+.limpieza-panel p {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: #445064;
+  margin: 0;
+  animation: distancia-fade 0.35s ease;
+}
+
+/* ----- Card 3: revelado del niño interior ----- */
+.nino-reveal {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  width: 100%;
+  text-align: left;
+  background: var(--paper-soft);
+  border: 1px dashed var(--navy-soft);
+  border-radius: 14px;
+  padding: 1rem 1.1rem;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.nino-reveal:hover {
+  transform: translateY(-2px);
+  border-color: var(--navy);
+}
+
+.nino-reveal:focus-visible {
+  outline: 2px solid var(--halo-cyan);
+  outline-offset: 2px;
+}
+
+.nino-reveal__icono {
+  flex: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--halo-cyan), var(--navy-soft));
+  opacity: 0.85;
+}
+
+.nino-reveal__texto {
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.nino-reveal.revelado .nino-reveal__texto {
+  font-family: var(--font-serif);
+  font-style: italic;
+  animation: distancia-fade 0.4s ease;
+}
+
+@keyframes distancia-fade {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 900px) {
+  .distancia-grid { grid-template-columns: 1fr 1fr; }
+  .distancia-card:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 640px) {
+  .distancia-grid { grid-template-columns: 1fr; }
+  .distancia-card:last-child { grid-column: auto; }
+  .chakra-selector { flex-wrap: wrap; justify-content: center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .distancia-card,
+  .chakra-punto,
+  .nino-reveal { transition: none; }
+  .limpieza-panel p,
+  .nino-reveal.revelado .nino-reveal__texto { animation: none; }
+}
+
 /* ---------- Contacto ---------- */
 .contacto {
   background: var(--ink);

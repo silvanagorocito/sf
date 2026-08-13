@@ -756,6 +756,111 @@
 
   </section>
 
+  <!-- ================= TERAPIAS A DISTANCIA ================= -->
+  <section class="distancia pad" id="distancia" aria-labelledby="distancia-title">
+    <div class="container">
+      <div class="head">
+        <div class="ornamento ornamento--md" role="img" aria-label="Separador decorativo"></div>
+        <span class="eyebrow">Terapias 100% a distancia</span>
+        <h2 class="section-title" id="distancia-title">Armonización sin Fronteras</h2>
+        <p class="section-lede">
+          La energía no conoce distancias. Estas tres terapias se realizan íntegramente de forma virtual,
+          para que puedas recibirlas estés donde estés.
+        </p>
+      </div>
+
+      <div class="distancia-grid">
+
+        <!-- ===== Card 1: Chakras con Péndulo Hebreo ===== -->
+        <article class="distancia-card" id="cardChakras">
+          <span class="distancia-card__badge">Vía online</span>
+          <h3 class="distancia-card__titulo">Armonización de Chakras <span>con Péndulo Hebreo</span></h3>
+          <p class="distancia-card__texto">
+            A través de una foto o videollamada, el péndulo hebreo permite detectar en qué chakra hay un
+            bloqueo energético y reequilibrarlo a la distancia, sin importar dónde te encuentres.
+          </p>
+
+          <div class="chakra-selector" role="group" aria-label="Seleccioná un chakra para ver su frecuencia">
+            <button type="button" class="chakra-punto" data-chakra="raiz" style="--chakra-color:#c0392b;" aria-pressed="false">
+              <span class="distancia-sr">Raíz</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="sacro" style="--chakra-color:#e08a2b;" aria-pressed="false">
+              <span class="distancia-sr">Sacro</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="plexo" style="--chakra-color:#d9b62c;" aria-pressed="false">
+              <span class="distancia-sr">Plexo solar</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="corazon" style="--chakra-color:#3f9d5c;" aria-pressed="false">
+              <span class="distancia-sr">Corazón</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="garganta" style="--chakra-color:#2f8fd1;" aria-pressed="false">
+              <span class="distancia-sr">Garganta</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="tercerojo" style="--chakra-color:#3b4fb0;" aria-pressed="false">
+              <span class="distancia-sr">Tercer ojo</span>
+            </button>
+            <button type="button" class="chakra-punto" data-chakra="corona" style="--chakra-color:#7c4fb0;" aria-pressed="false">
+              <span class="distancia-sr">Corona</span>
+            </button>
+          </div>
+
+          <div class="chakra-info" id="chakraInfo" aria-live="polite">
+            <span class="chakra-info__nombre" id="chakraNombre">Tocá un chakra</span>
+            <span class="chakra-info__detalle" id="chakraDetalle">para descubrir su frecuencia y su palabra asociada.</span>
+          </div>
+        </article>
+
+        <!-- ===== Card 2: Limpieza energética ===== -->
+        <article class="distancia-card" id="cardLimpieza">
+          <span class="distancia-card__badge">Vía online</span>
+          <h3 class="distancia-card__titulo">Limpieza Energética <span>con Péndulo Hebreo</span></h3>
+          <p class="distancia-card__texto">
+            El péndulo hebreo también permite limpiar y despejar cargas energéticas, tanto en personas
+            como en los espacios que habitan, trabajando a distancia con la misma efectividad.
+          </p>
+
+          <div class="limpieza-tabs" role="tablist" aria-label="Tipo de limpieza energética">
+            <button type="button" class="limpieza-tab activo" role="tab" id="tabPersonas" aria-selected="true" aria-controls="panelPersonas" data-target="personas">
+              Personas
+            </button>
+            <button type="button" class="limpieza-tab" role="tab" id="tabEspacios" aria-selected="false" aria-controls="panelEspacios" data-target="espacios" tabindex="-1">
+              Hogares y consultorios
+            </button>
+          </div>
+
+          <div class="limpieza-panel" id="panelPersonas" role="tabpanel" aria-labelledby="tabPersonas" data-panel="personas">
+            <p>
+              Se despejan cargas emocionales y energías densas acumuladas por vínculos, situaciones de estrés
+              o ambientes pesados, restableciendo tu equilibrio y vitalidad natural.
+            </p>
+          </div>
+          <div class="limpieza-panel" id="panelEspacios" role="tabpanel" aria-labelledby="tabEspacios" data-panel="espacios" hidden>
+            <p>
+              Se limpia la energía estancada en hogares, oficinas o consultorios, favoreciendo la
+              armonía, la buena circulación de energía y el bienestar de quienes habitan el espacio.
+            </p>
+          </div>
+        </article>
+
+        <!-- ===== Card 3: Regresión a la niñez ===== -->
+        <article class="distancia-card" id="cardNinez">
+          <span class="distancia-card__badge">Vía online</span>
+          <h3 class="distancia-card__titulo">Regresión a la Niñez <span>Sanación del Niño Interior</span></h3>
+          <p class="distancia-card__texto">
+            Un espacio de encuentro con tu niño interior, para revisitar con ternura y contención
+            aquellas vivencias tempranas que aún piden ser escuchadas y sanadas.
+          </p>
+
+          <button type="button" class="nino-reveal" id="ninoBoton" aria-expanded="false">
+            <span class="nino-reveal__icono" aria-hidden="true"></span>
+            <span class="nino-reveal__texto" id="ninoTexto">Tocá suavemente para recibir un mensaje de tu niño interior</span>
+          </button>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
   <!-- ================= CONTACTO ================= -->
   <section class="contacto pad" id="contacto">
     <div class="container">
@@ -1646,5 +1751,118 @@
       const slider = document.getElementById('slider');
       if (slider) new BeerSlider(slider, { start: slider.dataset.start || '75' });
     })();</script>
+
+  <!-- ================= JS: TERAPIAS A DISTANCIA ================= -->
+  <script>
+    // ---------------------------------------------------------
+    // CARD 1 — Selector de chakras (frecuencia + palabra asociada)
+    // ---------------------------------------------------------
+    (function () {
+      const selector = document.querySelector('.chakra-selector');
+      if (!selector) return;
+
+      const nombreEl = document.getElementById('chakraNombre');
+      const detalleEl = document.getElementById('chakraDetalle');
+      const puntos = Array.from(selector.querySelectorAll('.chakra-punto'));
+
+      const chakras = {
+        raiz:      { nombre: 'Chakra Raíz · Muladhara',      frecuencia: '396 Hz', palabra: 'Palabra asociada: "Estoy a salvo".' },
+        sacro:     { nombre: 'Chakra Sacro · Svadhisthana',  frecuencia: '417 Hz', palabra: 'Palabra asociada: "Fluyo".' },
+        plexo:     { nombre: 'Plexo Solar · Manipura',       frecuencia: '528 Hz', palabra: 'Palabra asociada: "Puedo".' },
+        corazon:   { nombre: 'Chakra del Corazón · Anahata', frecuencia: '639 Hz', palabra: 'Palabra asociada: "Amo y soy amado/a".' },
+        garganta:  { nombre: 'Chakra Garganta · Vishuddha',  frecuencia: '741 Hz', palabra: 'Palabra asociada: "Expreso mi verdad".' },
+        tercerojo: { nombre: 'Tercer Ojo · Ajna',            frecuencia: '852 Hz', palabra: 'Palabra asociada: "Veo con claridad".' },
+        corona:    { nombre: 'Chakra Corona · Sahasrara',    frecuencia: '963 Hz', palabra: 'Palabra asociada: "Estoy conectado/a".' }
+      };
+
+      function seleccionar(id) {
+        const datos = chakras[id];
+        if (!datos) return;
+
+        puntos.forEach((punto) => {
+          punto.setAttribute('aria-pressed', String(punto.dataset.chakra === id));
+        });
+
+        nombreEl.textContent = datos.nombre;
+        detalleEl.textContent = `Frecuencia: ${datos.frecuencia}. ${datos.palabra}`;
+      }
+
+      selector.addEventListener('click', (evento) => {
+        const boton = evento.target.closest('.chakra-punto');
+        if (!boton) return;
+        seleccionar(boton.dataset.chakra);
+      });
+    })();
+
+    // ---------------------------------------------------------
+    // CARD 2 — Tabs: Limpieza de Personas / Hogares y consultorios
+    // ---------------------------------------------------------
+    (function () {
+      const tabs = Array.from(document.querySelectorAll('.limpieza-tab'));
+      if (!tabs.length) return;
+
+      const paneles = Array.from(document.querySelectorAll('.limpieza-panel'));
+
+      function activarTab(tabSeleccionada) {
+        const destino = tabSeleccionada.dataset.target;
+
+        tabs.forEach((tab) => {
+          const activa = tab === tabSeleccionada;
+          tab.classList.toggle('activo', activa);
+          tab.setAttribute('aria-selected', String(activa));
+          tab.tabIndex = activa ? 0 : -1;
+        });
+
+        paneles.forEach((panel) => {
+          panel.hidden = panel.dataset.panel !== destino;
+        });
+      }
+
+      tabs.forEach((tab) => {
+        tab.addEventListener('click', () => activarTab(tab));
+      });
+
+      // Navegación con flechas del teclado entre pestañas (accesibilidad)
+      const tabsContainer = document.querySelector('.limpieza-tabs');
+      if (tabsContainer) {
+        tabsContainer.addEventListener('keydown', (evento) => {
+          if (evento.key !== 'ArrowRight' && evento.key !== 'ArrowLeft') return;
+          const actual = tabs.findIndex((tab) => tab.classList.contains('activo'));
+          const siguiente = evento.key === 'ArrowRight'
+            ? (actual + 1) % tabs.length
+            : (actual - 1 + tabs.length) % tabs.length;
+          tabs[siguiente].focus();
+          activarTab(tabs[siguiente]);
+        });
+      }
+    })();
+
+    // ---------------------------------------------------------
+    // CARD 3 — Regresión a la Niñez: revelado suave de mensajes
+    // ---------------------------------------------------------
+    (function () {
+      const boton = document.getElementById('ninoBoton');
+      if (!boton) return;
+
+      const textoEl = document.getElementById('ninoTexto');
+
+      const mensajes = [
+        'Está bien haber necesitado más de lo que recibiste.',
+        'Podés volver a jugar, a soñar, a confiar en tu propio ritmo.',
+        'Ese niño o niña que fuiste merece ser mirado con ternura hoy.',
+        'No hace falta que sigas cuidando solo/a de todo: también podés ser cuidado/a.',
+        'Cada parte tuya, incluso la más pequeña, tiene un lugar en quien sos hoy.'
+      ];
+
+      let indice = -1;
+
+      boton.addEventListener('click', () => {
+        indice = (indice + 1) % mensajes.length;
+        boton.classList.add('revelado');
+        boton.setAttribute('aria-expanded', 'true');
+        textoEl.textContent = mensajes[indice];
+      });
+    })();
+  </script>
 </body>
 </html>
