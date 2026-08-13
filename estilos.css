@@ -1010,6 +1010,25 @@ section.pad {
   .chakra-selector { flex-wrap: wrap; justify-content: center; }
 }
 
+/* ----- CTA de la sección ----- */
+.distancia-cta {
+  text-align: center;
+  margin-top: 2.6rem;
+}
+
+/* .btn-primario nace pensado para fondos oscuros (Contacto);
+   acá el fondo es claro, así que se invierte a relleno navy sólido. */
+.distancia .btn-primario {
+  background: var(--navy);
+  color: #fff;
+  box-shadow: 0 14px 32px -14px rgba(11, 60, 110, 0.55);
+}
+
+.distancia .btn-primario:hover {
+  background: var(--navy-soft);
+  box-shadow: 0 18px 38px -12px rgba(11, 60, 110, 0.6);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .distancia-card,
   .chakra-punto,
