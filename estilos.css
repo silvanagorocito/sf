@@ -779,7 +779,30 @@ section.pad {
   border-radius: 20px;
   padding: 2rem 1.8rem 1.8rem;
   box-shadow: 0 24px 60px -34px rgba(11, 60, 110, 0.35);
+  overflow: hidden;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* Foto de fondo muy tenue por tarjeta (variable --card-bg en el HTML).
+   El velo blanco casi opaco mantiene el look actual de la sección;
+   la imagen solo se asoma como una textura de fondo, sin competir
+   con el texto. Si una tarjeta no define --card-bg, no se ve nada. */
+.distancia-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.91), rgba(255, 255, 255, 0.91)),
+    var(--card-bg, none);
+  background-size: cover;
+  background-position: center;
+  pointer-events: none;
+}
+
+.distancia-card > * {
+  position: relative;
+  z-index: 1;
 }
 
 .distancia-card:hover {
