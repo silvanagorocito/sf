@@ -912,7 +912,9 @@ section.pad {
   display: flex;
   flex-direction: column;
   gap: 0.2rem;
-  background: var(--paper-soft);
+  background: rgba(247, 248, 250, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 0.9rem 1rem;
@@ -936,7 +938,9 @@ section.pad {
 .limpieza-tabs {
   display: flex;
   gap: 0.4rem;
-  background: var(--paper-soft);
+  background: rgba(247, 248, 250, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px solid var(--line);
   border-radius: 999px;
   padding: 0.3rem;
@@ -982,7 +986,9 @@ section.pad {
   gap: 0.8rem;
   width: 100%;
   text-align: left;
-  background: var(--paper-soft);
+  background: rgba(247, 248, 250, 0.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
   border: 1px dashed var(--navy-soft);
   border-radius: 14px;
   padding: 1rem 1.1rem;
