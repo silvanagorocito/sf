@@ -1012,10 +1012,14 @@
 
   // Ahorro de datos / conexión lenta. Esta API no existe en iOS Safari,
   // así que en iPhone no aplica este chequeo (siguen valiendo las demás reglas).
+  // Solo bloqueamos el video en conexiones MUY lentas (2G): "effectiveType"
+  // suele subestimar la calidad real (muchos celulares con 4G/WiFi fuerte
+  // igual reportan "3g"), así que exigir "4g" exacto terminaba bloqueando
+  // el video en la mayoría de los dispositivos por un falso negativo.
   const conexion = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
   if (conexion) {
     if (conexion.saveData) return;
-    if (conexion.effectiveType && conexion.effectiveType !== '4g') return;
+    if (conexion.effectiveType === 'slow-2g' || conexion.effectiveType === '2g') return;
   }
 
   const slider = document.getElementById('slider');
@@ -1088,6 +1092,42 @@
     v.addEventListener('loadeddata', res, { once: true });
     v.addEventListener('error', res, { once: true });
   }))).then(() => slider.classList.add('videos-listos'));
+
+  // ---------------------------------------------------------
+  // DEBUG TEMPORAL — panel visible en pantalla para diagnosticar
+  // por qué un lado no reproduce en celular real. Sacar después.
+  // ---------------------------------------------------------
+  (function () {
+    const panel = document.createElement('div');
+    panel.style.cssText = 'position:fixed;bottom:0;left:0;right:0;z-index:99999;background:rgba(0,0,0,.88);color:#0f0;font:11px/1.4 monospace;padding:.6rem;max-height:40vh;overflow:auto;white-space:pre-wrap;';
+    panel.textContent = 'DEBUG VIDEO —\n';
+    document.body.appendChild(panel);
+    function log(msg) { panel.textContent += msg + '\n'; }
+
+    log('innerWidth: ' + window.innerWidth);
+    log('esEscritorio: ' + esEscritorio + ' | esMobileElegible: ' + esMobileElegible);
+
+    [['WINTER (cuerpo-completo)', videoWinter], ['SUMMER (reiki)', videoSummer]].forEach(([nombre, v]) => {
+      if (!v) { log(nombre + ': elemento no encontrado'); return; }
+      log(nombre + ' src usado: ' + (esEscritorio ? v.dataset.src : v.dataset.srcMovil));
+      v.addEventListener('loadeddata', () => log(nombre + ': loadeddata OK, readyState=' + v.readyState));
+      v.addEventListener('error', () => {
+        const err = v.error;
+        log(nombre + ': ERROR code=' + (err && err.code) + ' message=' + (err && err.message));
+      });
+      v.addEventListener('play', () => log(nombre + ': play() disparado'));
+      v.addEventListener('playing', () => log(nombre + ': playing (reproduciendo de verdad)'));
+      v.addEventListener('pause', () => log(nombre + ': pause()'));
+      v.addEventListener('stalled', () => log(nombre + ': stalled'));
+      v.addEventListener('waiting', () => log(nombre + ': waiting (buffering)'));
+    });
+
+    const origActualizar = actualizarReproduccion;
+    actualizarReproduccion = function (value) {
+      log('actualizarReproduccion(' + value + ')');
+      return origActualizar(value);
+    };
+  })();
 })();
     // ---------------------------------------------------------
     // INTRO: la animación del logo se reproduce siempre, completa,
