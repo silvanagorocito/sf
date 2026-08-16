@@ -1524,6 +1524,65 @@ footer a {
   }
 }
 
+/* Cinta de terapias virtuales: oculta por defecto (desktop, donde
+   el menú de arriba sigue visible y no hace falta). */
+.cinta-virtual {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  :root { --cinta-height: 2rem; }
+
+  /* La cinta ocupa el espacio que el menú deja libre en mobile
+     (el <nav> pierde sus links en este breakpoint, ver más abajo). */
+  .cinta-virtual {
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: var(--cinta-height);
+    z-index: 600;
+    background: var(--navy);
+    overflow: hidden;
+  }
+
+  .cinta-virtual__track {
+    display: flex;
+    width: max-content;
+    animation: cinta-desplazar 26s linear infinite;
+  }
+
+  .cinta-virtual__grupo {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding-right: 0.6rem;
+    white-space: nowrap;
+    font-family: var(--font-sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.02em;
+    color: #fff;
+  }
+
+  @keyframes cinta-desplazar {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* Empuja el nav y el resto de la página hacia abajo, el alto exacto
+     de la cinta, para que no tape nada (a diferencia del nav, que es
+     transparente y se superpone al hero a propósito). */
+  body { padding-top: var(--cinta-height); }
+  .nav { top: var(--cinta-height); }
+}
+
+@media (max-width: 720px) and (prefers-reduced-motion: reduce) {
+  .cinta-virtual__track { animation: none; }
+  .cinta-virtual { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+}
+
 @media (max-width: 720px) {
   .nav__links { display: none; }
   section.pad { padding: 4rem 0; }

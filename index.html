@@ -157,6 +157,33 @@
     </div>
   </div>
 
+  <!-- ================= CINTA MOBILE: terapias 100% virtuales ================= -->
+  <!-- Solo visible en pantallas chicas, donde el menú de arriba queda oculto. -->
+  <div class="cinta-virtual" id="cintaVirtual" role="note" aria-label="Terapias disponibles de forma 100% virtual">
+    <div class="cinta-virtual__track">
+      <span class="cinta-virtual__grupo">
+        <span>🔮 Armonización de Chakras con Péndulo Hebreo — 100% online</span>
+        <span aria-hidden="true">•</span>
+        <span>✨ Limpieza Energética de Personas y Espacios — a distancia</span>
+        <span aria-hidden="true">•</span>
+        <span>🌿 Regresión a la Niñez — sanación del niño interior, online</span>
+        <span aria-hidden="true">•</span>
+        <span>🌍 La energía no conoce distancias</span>
+        <span aria-hidden="true">•</span>
+      </span>
+      <span class="cinta-virtual__grupo" aria-hidden="true">
+        <span>🔮 Armonización de Chakras con Péndulo Hebreo — 100% online</span>
+        <span>•</span>
+        <span>✨ Limpieza Energética de Personas y Espacios — a distancia</span>
+        <span>•</span>
+        <span>🌿 Regresión a la Niñez — sanación del niño interior, online</span>
+        <span>•</span>
+        <span>🌍 La energía no conoce distancias</span>
+        <span>•</span>
+      </span>
+    </div>
+  </div>
+
   <!-- ================= NAV ================= -->
   <header class="nav" id="nav">
     <div class="container">
@@ -927,7 +954,7 @@
 
         <div class="contacto-info">
           <a href="mailto:sgl28@hotmail.com">
-            <span class="dot"></span> sgl@hotmail.com
+            <span class="dot"></span> sgl28@hotmail.com
           </a>
           <span>
             <span class="dot"></span> Turnos con reserva previa
@@ -1749,7 +1776,7 @@
 
         if (panelWhatsapp) {
           const mensaje = `Hola Silvana, quiero reservar una sesión de ${data.nombre}.`;
-          panelWhatsapp.href = `https://wa.me/54935364675543?text=${encodeURIComponent(mensaje)}`;
+          panelWhatsapp.href = `https://wa.me/5493564675543?text=${encodeURIComponent(mensaje)}`;
         }
 
         if (data.fondo) mostrarFondoCategoria(data);
@@ -1832,7 +1859,7 @@
     // mensaje correspondiente a cada tarjeta (número fijo, sin libs).
     // ---------------------------------------------------------
     (function () {
-      const NUMERO_WHATSAPP = '54935364675543';
+      const NUMERO_WHATSAPP = '5493564675543';
 
       function construirLinkWhatsapp(mensaje) {
         return `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`;
