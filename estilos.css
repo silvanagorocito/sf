@@ -658,8 +658,14 @@ section.pad {
 .menu-radial-panel__title {
   font-family: var(--font-serif);
   font-size: 1.15rem;
+  line-height: 1.3;
   margin-bottom: 0.4rem;
   color: var(--ink);
+  /* Los nombres de terapia varían mucho en longitud ("Reiki" vs.
+     "Acompañamiento desde la psicología holística") — reservamos
+     siempre 2 líneas para que el panel (y el fondo detrás) no
+     cambie de alto al pasar de una terapia a otra. */
+  min-height: calc(1.3em * 2);
 }
 
 .menu-radial-panel__text {
@@ -667,6 +673,10 @@ section.pad {
   line-height: 1.55;
   color: #56607a;
   margin: 0;
+  /* Mismo criterio: las descripciones van de una línea corta a un
+     párrafo bastante más largo según la terapia — reservamos el
+     espacio máximo (3 líneas) para que la sección no "salte". */
+  min-height: calc(1.55em * 3);
 }
 
 .menu-radial-panel__cta {
