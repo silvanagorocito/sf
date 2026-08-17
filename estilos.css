@@ -337,14 +337,12 @@ section.pad {
   background-size: cover;
   background-position: center;
   opacity: 0;
-  transform: scale(1.03); /* leve zoom para que el crossfade se sienta más suave */
   filter: saturate(0.9);
-  transition: opacity 1s ease, transform 8s ease;
+  transition: opacity 1s ease;
 }
 
 .services-bg__layer.visible {
   opacity: 1;
-  transform: scale(1);
 }
 
 /* velo para atenuar la foto y que el texto/menú sigan legibles */
