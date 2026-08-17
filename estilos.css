@@ -922,14 +922,22 @@ section.pad {
   border: 1px solid var(--line);
   border-radius: 14px;
   padding: 0.9rem 1rem;
-  min-height: 4.4rem;
+  /* Alto total = 2 líneas de nombre + 2 líneas de detalle + gap + padding,
+     así el recuadro (y por lo tanto la tarjeta entera) no cambia de
+     tamaño sin importar qué chakra esté seleccionado. */
+  min-height: 7.2rem;
   justify-content: center;
 }
 
 .chakra-info__nombre {
   font-family: var(--font-serif);
   font-size: 1rem;
+  line-height: 1.3;
   color: var(--ink);
+  /* Mismo criterio que el detalle: algunos nombres son más largos
+     ("Chakra del Corazón · Anahata") y wrappean a 2 líneas, otros no
+     ("Tercer Ojo · Ajna") — reservamos 2 siempre para que no varíe. */
+  min-height: calc(1.3em * 2);
 }
 
 .chakra-info__detalle {
