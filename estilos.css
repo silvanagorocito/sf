@@ -31,6 +31,10 @@ body {
   color: var(--ink);
   background: var(--paper);
   -webkit-font-smoothing: antialiased;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 img, svg { max-width: 100%; }
@@ -932,6 +936,10 @@ section.pad {
   font-size: 0.84rem;
   line-height: 1.5;
   color: #5a6478;
+  /* Reserva el alto de 2 renglones siempre, tenga 1 o 2 líneas el texto
+     real (varía según el chakra) — así la tarjeta no "salta" de tamaño
+     al cambiar de un chakra a otro. */
+  min-height: calc(1.5em * 2);
 }
 
 /* ----- Card 2: tabs de limpieza ----- */
