@@ -243,8 +243,18 @@
   <section class="beer-hero" id="inicio" aria-labelledby="hero-title">
     <div id="slider" class="beer-slider" data-start="75">
       <div class="ctnr ctnr-winter">
-        <img src="assets/img/servicios-fondo/cuerpo-completo.jpg" alt="Sesión de masaje corporal">
-        <video class="hero-video" muted loop playsinline preload="none" poster="assets/img/servicios-fondo/cuerpo-completo.jpg" data-src="assets/video/cuerpo-completo.mp4" data-src-movil="assets/video/movil/cuerpo-completo.mp4" aria-hidden="true"></video>
+        <img class="ctnr-img ctnr-img--desktop" src="assets/img/servicios-fondo/cuerpo-completo-frame-desktop.jpg" alt="Sesión de masaje corporal">
+        <img class="ctnr-img ctnr-img--movil" src="assets/img/servicios-fondo/cuerpo-completo-frame-movil.jpg" alt="Sesión de masaje corporal">
+        <video
+          class="hero-video"
+          muted loop playsinline preload="none"
+          poster="assets/img/servicios-fondo/cuerpo-completo-frame-desktop.jpg"
+          data-poster-desktop="assets/img/servicios-fondo/cuerpo-completo-frame-desktop.jpg"
+          data-poster-movil="assets/img/servicios-fondo/cuerpo-completo-frame-movil.jpg"
+          data-src="assets/video/cuerpo-completo.mp4"
+          data-src-movil="assets/video/movil/cuerpo-completo.mp4"
+          aria-hidden="true"
+        ></video>
         <section class="b b2">
           <p class="beer-kicker">BIENESTAR CORPORAL</p>
           <h1 id="hero-title">Silvana<br>Gorocito</h1>
@@ -253,8 +263,18 @@
       </div>
       <div class="beer-reveal">
         <div class="ctnr ctnr-summer">
-          <img src="assets/img/servicios-fondo/reiki.jpg" alt="Terapia de Reiki y bienestar integral">
-          <video class="hero-video" muted loop playsinline preload="none" poster="assets/img/servicios-fondo/reiki.jpg" data-src="assets/video/reiki.mp4" data-src-movil="assets/video/movil/reiki.mp4" aria-hidden="true"></video>
+          <img class="ctnr-img ctnr-img--desktop" src="assets/img/servicios-fondo/reiki-frame-desktop.jpg" alt="Terapia de Reiki y bienestar integral">
+          <img class="ctnr-img ctnr-img--movil" src="assets/img/servicios-fondo/reiki-frame-movil.jpg" alt="Terapia de Reiki y bienestar integral">
+          <video
+            class="hero-video"
+            muted loop playsinline preload="none"
+            poster="assets/img/servicios-fondo/reiki-frame-desktop.jpg"
+            data-poster-desktop="assets/img/servicios-fondo/reiki-frame-desktop.jpg"
+            data-poster-movil="assets/img/servicios-fondo/reiki-frame-movil.jpg"
+            data-src="assets/video/reiki.mp4"
+            data-src-movil="assets/video/movil/reiki.mp4"
+            aria-hidden="true"
+          ></video>
           <section class="b b1">
             <p class="beer-kicker">TERAPEUTA HOLÍSTICA · MASAJISTA</p>
             <h2>TERAPIAS<br>HOLÍSTICAS</h2>
@@ -1162,6 +1182,8 @@
     videos.forEach((v) => {
       const src = esEscritorio ? v.dataset.src : v.dataset.srcMovil;
       if (!src) return; // sin clip mobile todavía: se queda como poster
+      const poster = esEscritorio ? v.dataset.posterDesktop : v.dataset.posterMovil;
+      if (poster) v.poster = poster;
       const source = document.createElement('source');
       source.src = src;
       source.type = 'video/mp4';

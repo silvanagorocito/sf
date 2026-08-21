@@ -2169,7 +2169,14 @@ footer a {
 .beer-slider, .beer-slider *, .beer-slider *::before, .beer-slider *::after { box-sizing: border-box; }
 .beer-slider { display: inline-block; position: relative; width: 100%; height: 100%; overflow: hidden; background: var(--paper-soft); }
 .beer-slider .ctnr { position: relative; height: 100%; background: var(--navy); }
-.beer-slider .ctnr > img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.beer-slider .ctnr > img { display: none; width: 100%; height: 100%; object-fit: cover; }
+/* Por defecto (desktop, >=1024px) se ve la versión desktop */
+.beer-slider .ctnr > img.ctnr-img--desktop { display: block; }
+@media (max-width: 1023px) {
+  /* En mobile se ve la versión mobile — mismo corte que usa el video */
+  .beer-slider .ctnr > img.ctnr-img--desktop { display: none; }
+  .beer-slider .ctnr > img.ctnr-img--movil { display: block; }
+}
 
 /* Oculta la foto fija apenas el navegador la va a pintar (la clase la
    agrega un script que corre ANTES del hero, arriba en el <body>, así
