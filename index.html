@@ -31,26 +31,6 @@
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body class="cargando">
-  <script>
-    // Se ejecuta ANTES de que el navegador pinte el hero (está literalmente
-    // arriba de todo en el body), así la decisión de tapar la foto fija ya
-    // está tomada antes de que llegue a dibujarse — cero flash, ni en PC.
-    // La carga real del video sigue pasando más abajo; esto solo decide
-    // si la foto se tapa o no mientras tanto.
-    (function () {
-      var w = window.innerWidth;
-      var esEscritorio = w >= 1024;
-      var esMobileElegible = w >= 320 && w < 1024;
-      if (!esEscritorio && !esMobileElegible) return;
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      var conexion = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
-      if (conexion) {
-        if (conexion.saveData) return;
-        if (conexion.effectiveType === 'slow-2g' || conexion.effectiveType === '2g') return;
-      }
-      document.documentElement.classList.add('video-preload-on');
-    })();
-  </script>
 
   <!-- ================= PARTÍCULAS AMBIENTE (decorativas, livianas) ================= -->
   <div class="ambient-particles" aria-hidden="true">
@@ -1123,12 +1103,6 @@
   const videoWinter = slider.querySelector('.ctnr-winter .hero-video'); // cuerpo-completo
   const videoSummer = slider.querySelector('.ctnr-summer .hero-video'); // reiki
 
-  // Si por lo que sea el video termina sin poder mostrarse nunca, esta
-  // función destapa la foto de nuevo (evita dejar el hero vacío).
-  function mostrarFallbackFoto() {
-    document.documentElement.classList.remove('video-preload-on');
-  }
-
   let sliderVisible = false;
 
   function actualizarReproduccion(value) {
@@ -1192,10 +1166,7 @@
       algunoConFuente = true;
     });
 
-    if (!algunoConFuente) {
-      mostrarFallbackFoto();
-      return;
-    }
+    if (!algunoConFuente) return;
 
     slider.classList.add(esEscritorio ? 'video-desktop-on' : 'video-mobile-on');
 
@@ -1203,12 +1174,8 @@
       if (v.readyState >= 2) return res();
       v.addEventListener('loadeddata', res, { once: true });
       v.addEventListener('error', res, { once: true });
-    }))).then((resultados) => {
+    }))).then(() => {
       slider.classList.add('videos-listos');
-      // Si TODOS los videos terminaron en error, no hay nada para mostrar:
-      // destapamos la foto en vez de dejar el hero vacío para siempre.
-      const huboAlgunoOk = videos.some((v) => !v.error);
-      if (!huboAlgunoOk) mostrarFallbackFoto();
     });
   }
 
