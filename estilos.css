@@ -2171,14 +2171,11 @@ footer a {
 .beer-slider .ctnr { position: relative; height: 100%; background: var(--navy); }
 .beer-slider .ctnr > img { display: block; width: 100%; height: 100%; object-fit: cover; }
 
-/* Cuando el video SÍ va a cargar (dispositivo/conexión elegible), la foto
-   fija se oculta de entrada — nunca llega a verse, ni siquiera un instante.
-   Mientras el video termina de cargar se ve el navy de fondo (arriba) en
-   vez de la foto. Si el video NO es elegible (conexión lenta, ahorro de
-   datos, reduce motion), esta clase nunca se agrega y la foto se sigue
-   viendo normal, como único contenido posible en ese caso. */
-.beer-slider.video-desktop-on .ctnr > img,
-.beer-slider.video-mobile-on .ctnr > img {
+/* Oculta la foto fija apenas el navegador la va a pintar (la clase la
+   agrega un script que corre ANTES del hero, arriba en el <body>, así
+   nunca se alcanza a ver ni un instante). Si el video termina fallando
+   del todo, el JS de más abajo saca esta clase y la foto vuelve. */
+html.video-preload-on .beer-slider .ctnr > img {
   opacity: 0;
 }
 .beer-slider .beer-reveal { --width: 50%; position: absolute; inset: 0; clip-path: polygon(0 0, var(--width) 0, var(--width) 100%, 0 100%); overflow: hidden; z-index: 1; opacity: 0; transition: opacity .35s; }

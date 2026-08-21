@@ -31,6 +31,26 @@
 <link rel="stylesheet" href="estilos.css">
 </head>
 <body class="cargando">
+  <script>
+    // Se ejecuta ANTES de que el navegador pinte el hero (está literalmente
+    // arriba de todo en el body), así la decisión de tapar la foto fija ya
+    // está tomada antes de que llegue a dibujarse — cero flash, ni en PC.
+    // La carga real del video sigue pasando más abajo; esto solo decide
+    // si la foto se tapa o no mientras tanto.
+    (function () {
+      var w = window.innerWidth;
+      var esEscritorio = w >= 1024;
+      var esMobileElegible = w >= 320 && w < 1024;
+      if (!esEscritorio && !esMobileElegible) return;
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var conexion = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      if (conexion) {
+        if (conexion.saveData) return;
+        if (conexion.effectiveType === 'slow-2g' || conexion.effectiveType === '2g') return;
+      }
+      document.documentElement.classList.add('video-preload-on');
+    })();
+  </script>
 
   <!-- ================= PARTÍCULAS AMBIENTE (decorativas, livianas) ================= -->
   <div class="ambient-particles" aria-hidden="true">
@@ -1083,20 +1103,11 @@
   const videoWinter = slider.querySelector('.ctnr-winter .hero-video'); // cuerpo-completo
   const videoSummer = slider.querySelector('.ctnr-summer .hero-video'); // reiki
 
-  let algunoConFuente = false;
-  videos.forEach((v) => {
-    const src = esEscritorio ? v.dataset.src : v.dataset.srcMovil;
-    if (!src) return; // sin clip mobile todavía: se queda como poster
-    const source = document.createElement('source');
-    source.src = src;
-    source.type = 'video/mp4';
-    v.appendChild(source);
-    v.load();
-    algunoConFuente = true;
-  });
-  if (!algunoConFuente) return;
-
-  slider.classList.add(esEscritorio ? 'video-desktop-on' : 'video-mobile-on');
+  // Si por lo que sea el video termina sin poder mostrarse nunca, esta
+  // función destapa la foto de nuevo (evita dejar el hero vacío).
+  function mostrarFallbackFoto() {
+    document.documentElement.classList.remove('video-preload-on');
+  }
 
   let sliderVisible = false;
 
@@ -1139,11 +1150,54 @@
     }
   });
 
-  Promise.allSettled(videos.map((v) => new Promise((res) => {
-    if (v.readyState >= 2) return res();
-    v.addEventListener('loadeddata', res, { once: true });
-    v.addEventListener('error', res, { once: true });
-  }))).then(() => slider.classList.add('videos-listos'));
+  // Acá es donde recién se ponen las fuentes y se pide la descarga real
+  // del video. En escritorio se hace apenas carga la página; en celular
+  // se pospone hasta que el usuario toque/scrollee la página, porque
+  // varios navegadores móviles no dejan que un video empiece a bajar
+  // datos solo, sin una interacción real de por medio (para cuidar el
+  // consumo de datos). Esperar cualquier interacción (no solo arrastrar
+  // la manija del hero) hace que en la práctica arranque casi al toque.
+  function cargarFuentesDeVideo() {
+    let algunoConFuente = false;
+    videos.forEach((v) => {
+      const src = esEscritorio ? v.dataset.src : v.dataset.srcMovil;
+      if (!src) return; // sin clip mobile todavía: se queda como poster
+      const source = document.createElement('source');
+      source.src = src;
+      source.type = 'video/mp4';
+      v.appendChild(source);
+      v.load();
+      algunoConFuente = true;
+    });
+
+    if (!algunoConFuente) {
+      mostrarFallbackFoto();
+      return;
+    }
+
+    slider.classList.add(esEscritorio ? 'video-desktop-on' : 'video-mobile-on');
+
+    Promise.allSettled(videos.map((v) => new Promise((res) => {
+      if (v.readyState >= 2) return res();
+      v.addEventListener('loadeddata', res, { once: true });
+      v.addEventListener('error', res, { once: true });
+    }))).then((resultados) => {
+      slider.classList.add('videos-listos');
+      // Si TODOS los videos terminaron en error, no hay nada para mostrar:
+      // destapamos la foto en vez de dejar el hero vacío para siempre.
+      const huboAlgunoOk = videos.some((v) => !v.error);
+      if (!huboAlgunoOk) mostrarFallbackFoto();
+    });
+  }
+
+  if (esEscritorio) {
+    cargarFuentesDeVideo();
+  } else {
+    const disparar = () => cargarFuentesDeVideo();
+    window.addEventListener('touchstart', disparar, { once: true, passive: true });
+    window.addEventListener('pointerdown', disparar, { once: true, passive: true });
+    window.addEventListener('scroll', disparar, { once: true, passive: true });
+  }
 })();
     // ---------------------------------------------------------
     // INTRO: la animación del logo se reproduce siempre, completa,
