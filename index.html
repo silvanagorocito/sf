@@ -1004,23 +1004,39 @@
           </span>
         </div>
 
-        <a href="https://wa.me/5493564675543?text=Hola%20Silvana%2C%20quiero%20reservar%20una%20sesi%C3%B3n." target="_blank" rel="noopener noreferrer" class="btn-primario btn-proc">Escribime <span class="ornamento ornamento--sm" aria-hidden="true"></span></a>
+
       </div>
 
-      <div class="contacto-card">
-        <h3>Terapias disponibles</h3>
-        <ul class="contacto-lista">
-          <li>Reiki</li>
-          <li>Armonización de chakras</li>
-          <li>Limpiezas energéticas con péndulo hebreo</li>
-          <li>Masajes relajantes con ventosas</li>
-          <li>Masaje cervico-craneal</li>
-          <li>Reflexología podal</li>
-          <li>Masaje de cuerpo completo</li>
-          <li>Hipnosis clínica reparadora</li>
-          <li>Psicología holística</li>
-          <li>Tratamiento capilar</li>
-        </ul>
+      <div class="contacto-form-wrap">
+        <form class="contacto-form" id="contactForm" novalidate>
+          <div class="contacto-form__campo">
+            <label for="formTerapia">Terapia</label>
+            <select id="formTerapia" required>
+              <option value="" disabled selected>Seleccioná la terapia</option>
+              <option value="Reiki">Reiki</option>
+              <option value="Armonización de chakras">Armonización de chakras</option>
+              <option value="Limpiezas energéticas con péndulo hebreo">Limpiezas energéticas con péndulo hebreo</option>
+              <option value="Masajes relajantes con ventosas">Masajes relajantes con ventosas</option>
+              <option value="Masaje cervico-craneal">Masaje cervico-craneal</option>
+              <option value="Reflexología podal">Reflexología podal</option>
+              <option value="Masaje de cuerpo completo">Masaje de cuerpo completo</option>
+              <option value="Hipnosis clínica reparadora">Hipnosis clínica reparadora</option>
+              <option value="Psicología holística">Psicología holística</option>
+              <option value="Tratamiento capilar">Tratamiento capilar</option>
+            </select>
+          </div>
+          <div class="contacto-form__campo">
+            <label for="formNombre">Nombre</label>
+            <input type="text" id="formNombre" placeholder="Escribí tu nombre" required>
+          </div>
+          <div class="contacto-form__campo">
+            <label for="formMensaje">Mensaje <span class="contacto-form__opt">(opcional)</span></label>
+            <textarea id="formMensaje" rows="3" placeholder="Escribí si querés contarme algo..."></textarea>
+          </div>
+          <button type="submit" class="btn-primario btn-contacto">
+            Agendar sesión
+          </button>
+        </form>
       </div>
     </div>
   </section>
@@ -1919,6 +1935,32 @@
       const slider = document.getElementById('slider');
       if (slider) new BeerSlider(slider, { start: slider.dataset.start || '75' });
     })();</script>
+
+  <!-- ================= JS: FORMULARIO DE CONTACTO ================= -->
+  <script>
+    (function () {
+      const NUMERO_WHATSAPP = '5493564675543';
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const terapia = document.getElementById('formTerapia').value;
+        const nombre = document.getElementById('formNombre').value.trim();
+        const mensajeCustom = document.getElementById('formMensaje').value.trim();
+
+        if (!terapia || !nombre) {
+          if (!terapia) document.getElementById('formTerapia').focus();
+          else document.getElementById('formNombre').focus();
+          return;
+        }
+
+        const mensaje = mensajeCustom || `Hola Silvana, soy ${nombre} y me gustaría agendar una sesión de ${terapia}.`;
+        window.open(`https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener');
+      });
+    })();
+  </script>
 
   <!-- ================= JS: TERAPIAS A DISTANCIA ================= -->
   <script>
