@@ -777,7 +777,7 @@ section.pad {
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: url('assets/img/terapias-online/terapias-online.jpg') center / cover no-repeat fixed;
+  background: url('assets/img/terapias-online/terapias-online.jpg') center / cover no-repeat;
   filter: grayscale(35%) contrast(0.95);
 }
 
@@ -788,6 +788,11 @@ section.pad {
   inset: 0;
   background: var(--paper-soft);
   opacity: 0.82;
+}
+
+.distancia .container {
+  position: relative;
+  z-index: 1;
 }
 
 .distancia .head {
@@ -1043,6 +1048,14 @@ section.pad {
   color: #445064;
   margin: 0;
   animation: distancia-fade 0.35s ease;
+}
+
+.limpieza-paneles {
+  display: grid;
+}
+
+.limpieza-panel {
+  grid-area: 1 / 1;
 }
 
 /* ----- Card 3: revelado del niño interior ----- */
